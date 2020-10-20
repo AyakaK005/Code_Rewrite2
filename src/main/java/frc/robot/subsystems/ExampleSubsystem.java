@@ -5,16 +5,31 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import com.nerdherd.lib.drivetrain.experimental.Drivetrain;
+import com.nerdherd.lib.motor.motorcontrollers.CANMotorController;
+import com.nerdherd.lib.motor.motorcontrollers.NerdyFalcon;
+import com.nerdherd.robot.RobotMap;
 
-public class ExampleSubsystem extends SubsystemBase {
+// import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+public class ExampleSubsystem extends Drivetrain {
   /**
-   * Creates a new ExampleSubsystem.
+   * Creates a new Drivetrain.
    */
+  private static final double trackwidth = 0.0;
   public ExampleSubsystem() {
-
+    super(new NerdyFalcon(RobotMap.kLeftParentTalonID), new NerdyFalcon(RobotMap.kRightParentTalonID),
+        new CANMotorController[] { new NerdyFalcon(
+            RobotMap.kLeftChildTalonID) },
+        new CANMotorController[] { new NerdyFalcon(
+            RobotMap.kRightChildTalonID) },
+    true,
+    false,
+    ExampleSubsystem.trackwidth
+    );
   }
 
   @Override
