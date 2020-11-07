@@ -30,11 +30,22 @@ public class Drive extends Drivetrain {
     false,
     Drive.trackwidth
     );
+    timeOfFlight1 = new TimeOfFlight(RobotMap.kTimeOfFlight1);
+    timeOfFlight2 = new TimeOfFlight(RobotMap.kTimeOfFlight2);
   }
 
   public void setPower(double leftPow, double rightPow) {
     super.setPower(leftPow, rightPow);
   }
+
+  public boolean WallDetected(){
+    return timeOfFlight1.getRange() < RobotMap.kWallDetected;
+  }
+
+  public boolean DroneDetected(){
+    return timeOfFlight2.getRange() < RobotMap.kDroneDetected;
+  }
+
 
   @Override
   public void periodic() {
